@@ -1,26 +1,31 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
-  const dispatch = useDispatch();
+  const [showCart, setShowCart] = useState(false); 
+  const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page  
+  const [showProductList, setShowProductList] = useState(false);
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
-        const TotalCost = ({ totalCosts, ItemsDisplay }) => {
-        const total_amount = 0;  
-        };
+        let total_amount = 0;
         cart.forEach((item) => {
             if (item.quantity > 0) {
-                total_amount = total_amount + calculateTotalCost(item);
+                total_amount += calculateTotalCost(item);
             }
           });
+        return total_amount;
   };
 
   const handleContinueShopping = (e) => {
-   
+    e.preventDefault();
+    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
+    setShowCart(false); // Hide the cart when navigating to About Us
+
   };
 
 
@@ -37,7 +42,9 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-    total_amount = total_amount + (item.quantity * item.cost);
+    let total_cost = 0;
+    total_cost = item.quantity * item.cost;
+    return total_cost;
   };
 
   return (
