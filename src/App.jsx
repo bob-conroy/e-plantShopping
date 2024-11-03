@@ -9,7 +9,7 @@ function App() {
   const [showProductList, setShowProductList] = useState(false);
 
   const handleGetStartedClick = () => {
-    setShowProductList(true);
+    setShowProductList(true); 
   };
 
   return (
