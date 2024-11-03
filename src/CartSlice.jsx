@@ -25,6 +25,7 @@ export const CartSlice = createSlice({
           existingItem.quantity = newQty;
         }     
     },
+
   },
 });
 

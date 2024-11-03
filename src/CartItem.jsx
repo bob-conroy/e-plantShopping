@@ -5,21 +5,22 @@ import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
   const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector(state => state.cart.items);    
+  const cart = useSelector(state => state.cart.items); 
+  
   const dispatch = useDispatch();
     
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
-        let total_amount = 0;
-        cart.forEach((item) => {
-            if (item.quantity > 0) {
-                total_amount += calculateTotalCost(item);
-            }
-          });
-        return total_amount;
-  };
+    let total_amount = 0;
+    cart.forEach((item) => {
+        if (item.quantity > 0) {
+            total_amount += calculateTotalCost(item);
+        }
+      });
+    return total_amount;
+};
 
-  const handleContinueShopping = (e) => {
+const handleContinueShopping = (e) => {
     e.preventDefault();
     onContinueShopping(e, false); // Return to show product list
   };
