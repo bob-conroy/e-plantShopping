@@ -20,24 +20,30 @@ import './CartItem.css';
   };
 
   const handleContinueShopping = (e) => {
+    e.preventDefault();
     onContinueShopping(e, false); // Return to show product list
   };
 
   const handleIncrement = (item) => {
     let newQty = item.quantity + 1;
-    dispatch(updateQuantity(item.name,newQty));
+    dispatch(updateQuantity({name: item.name, newQty: newQty}));
   };
 
   const handleDecrement = (item) => {
     let newQty = item.quantity - 1;
-    dispatch(updateQuantity(item.name,newQty));
+    if (newQty === 0) {
+        dispatch(removeItem(item.name));
+    } else {
+        dispatch(updateQuantity({name: item.name, newQty: newQty}));
+    }
   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem(item));
+    dispatch(removeItem(item.name));
   };
 
   const handleCheckoutShopping = (e) => {
+    e.preventDefault();
     alert('Functionality to be added for future reference');
   };
 
